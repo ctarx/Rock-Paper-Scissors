@@ -1,6 +1,6 @@
 console.log("Hello World");
 
-// getComputerChoice will randomly return one of the following string values: “rock”, “paper” or “scissors”.
+//  Write the logic to get the computer choice
 function getComputerChoice(n) {
   return Math.floor(Math.random() * n);
 }
@@ -17,3 +17,11 @@ if (computerChoice == 0) {
   computerChoice = "Scissor";
   console.log(`Computer chose: ${computerChoice}`);
 }
+
+// Write the logic to get the human choice
+function getHumanChoice() {
+  let humanChoice = prompt("What's your choice? Rock / Paper / Scissors");
+  return console.log(`Player chose: ${humanChoice}`);
+}
+
+getHumanChoice();
