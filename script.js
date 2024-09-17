@@ -5,24 +5,15 @@ function getComputerChoice(n) {
   return Math.floor(Math.random() * n);
 }
 
-let choice = getComputerChoice(3);
+let computerChoice = getComputerChoice(3);
 
-if (choice == 0) {
-  console.log("Computer chose: Rock");
-} else if (choice == 1) {
-  console.log("Computer chose: Paper");
-} else if (choice == 2) {
-  console.log("Computer chose: Scissor");
+if (computerChoice == 0) {
+  computerChoice = "Rock";
+  console.log(`Computer chose: ${computerChoice}`);
+} else if (computerChoice == 1) {
+  computerChoice = "Paper";
+  console.log(`Computer chose: ${computerChoice}`);
+} else if (computerChoice == 2) {
+  computerChoice = "Scissor";
+  console.log(`Computer chose: ${computerChoice}`);
 }
-
-// switch (getComputerChoice(3)) {
-//   case 0:
-//     console.log("Computer chose: Rock");
-//     break;
-//   case 1:
-//     console.log("Computer chose: Paper");
-//     break;
-//   case 2:
-//     console.log("Computer chose: Scissor");
-//     break;
-// }
