@@ -31,28 +31,37 @@ function playGame() {
   function playRound(computerChoice, humanChoice) {
     if (computerChoice == "Rock" && humanChoice == "Rock") {
       console.log("It's a draw.");
+      alert("It's a draw.");
     } else if (computerChoice == "Rock" && humanChoice == "Paper") {
       console.log("You won! Paper beats Rock.");
+      alert("You won! Paper beats Rock.");
       ++humanScore;
     } else if (computerChoice == "Rock" && humanChoice == "Scissors") {
       console.log("You lose! Rock beats Scissors.");
+      alert("You lose! Rock beats Scissors.");
       ++computerScore;
     } else if (computerChoice == "Paper" && humanChoice == "Rock") {
       console.log("You lose! Paper beats Rock.");
+      alert("You lose! Paper beats Rock.");
       ++computerScore;
     } else if (computerChoice == "Paper" && humanChoice == "Paper") {
       console.log("It's a draw.");
+      alert("It's a draw.");
     } else if (computerChoice == "Paper" && humanChoice == "Scissors") {
       console.log("You won! Scissors beat Paper.");
+      alert("You won! Scissors beat Paper.");
       ++humanScore;
     } else if (computerChoice == "Scissors" && humanChoice == "Rock") {
       console.log("You won! Rock beats Scissors.");
+      alert("You won! Rock beats Scissors.");
       ++humanScore;
     } else if (computerChoice == "Scissors" && humanChoice == "Paper") {
       console.log("You lose! Scissors beat Paper.");
+      alert("You lose! Scissors beat Paper.");
       ++computerScore;
     } else if (computerChoice == "Scissors" && humanChoice == "Scissors") {
       console.log("It's a draw.");
+      alert("It's a draw.");
     }
   }
   // Play 5 rounds by calling playRound 5 times
@@ -65,7 +74,9 @@ function playGame() {
     );
     playRound(computerSelection, humanSelection);
     console.log(`\nScore: Human: ${humanScore}, Computer: ${computerScore}`);
+    alert(`\nScore: Human: ${humanScore}, Computer: ${computerScore}`);
   }
+  alert(`Game over. \nComputer: ${computerScore} vs Human: ${humanScore}`);
 }
 
 playGame();
