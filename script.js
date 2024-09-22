@@ -1,31 +1,65 @@
-console.log("Hello World");
+console.log("Rock Paper Scissors Game");
 
 //  Write the logic to get the computer choice
-function getComputerChoice(n) {
-  return Math.floor(Math.random() * n);
-}
+function getComputerChoice() {
+  let computerChoice = Math.floor(Math.random() * 3);
 
-let computerChoice = getComputerChoice(3);
-
-if (computerChoice == 0) {
-  computerChoice = "Rock";
-  console.log(`Computer chose: ${computerChoice}`);
-} else if (computerChoice == 1) {
-  computerChoice = "Paper";
-  console.log(`Computer chose: ${computerChoice}`);
-} else if (computerChoice == 2) {
-  computerChoice = "Scissor";
-  console.log(`Computer chose: ${computerChoice}`);
+  if (computerChoice == 0) {
+    computerChoice = "Rock";
+  } else if (computerChoice == 1) {
+    computerChoice = "Paper";
+  } else if (computerChoice == 2) {
+    computerChoice = "Scissors";
+  }
+  return computerChoice;
 }
 
 // Write the logic to get the human choice
 function getHumanChoice() {
   let humanChoice = prompt("What's your choice? Rock / Paper / Scissors");
-  return console.log(`Player chose: ${humanChoice}`);
+  return humanChoice[0].toUpperCase() + humanChoice.substring(1).toLowerCase();
 }
-
-getHumanChoice();
 
 // Declare the players score variables
 let humanScore = 0;
 let computerScore = 0;
+
+// Write the logic to play a single round
+const computerSelection = getComputerChoice();
+const humanSelection = getHumanChoice();
+
+function playRound(computerSelection, humanSelection) {
+  if (computerSelection == "Rock" && humanSelection == "Rock") {
+    console.log(`\nThis is draw.`);
+  } else if (computerSelection == "Rock" && humanSelection == "Paper") {
+    console.log(`\nHuman won.`);
+    ++humanScore;
+  } else if (computerSelection == "Rock" && humanSelection == "Scissors") {
+    console.log(`\nComputer won.`);
+    ++computerScore;
+  } else if (computerSelection == "Paper" && humanSelection == "Rock") {
+    console.log(`\nComputer won.`);
+    ++computerScore;
+  } else if (computerSelection == "Paper" && humanSelection == "Paper") {
+    console.log(`\nThis is draw.`);
+  } else if (computerSelection == "Paper" && humanSelection == "Scissors") {
+    console.log(`\nHuman won.`);
+    ++humanScore;
+  } else if (computerSelection == "Scissors" && humanSelection == "Rock") {
+    console.log(`\nHuman won.`);
+    ++humanScore;
+  } else if (computerSelection == "Scissors" && humanSelection == "Paper") {
+    console.log(`\nComputer won.`);
+    ++computerScore;
+  } else if (computerSelection == "Scissors" && humanSelection == "Scissors") {
+    console.log(`\nThis is draw.`);
+  }
+}
+
+// Test
+console.log(`Computer chose: ${computerSelection}`);
+console.log(`Player chose: ${humanSelection} `);
+playRound(computerSelection, humanSelection);
+console.log(`\nScore: Human: ${humanScore}, Computer: ${computerScore}`);
+
+// Write the logic to play the entire game
