@@ -74,9 +74,20 @@ function playGame() {
     );
     playRound(computerSelection, humanSelection);
     console.log(`\nScore: Human: ${humanScore}, Computer: ${computerScore}`);
-    alert(`\nScore: Human: ${humanScore}, Computer: ${computerScore}`);
   }
-  alert(`Game over. \nComputer: ${computerScore} vs Human: ${humanScore}`);
+  if (humanScore > computerScore) {
+    alert(
+      `Game over. You won! \nComputer: ${computerScore} vs Human: ${humanScore}`,
+    );
+  } else if (humanScore < computerScore) {
+    alert(
+      `Game over. You lose! \nComputer: ${computerScore} vs Human: ${humanScore}`,
+    );
+  } else {
+    alert(
+      `Game over. It's draw. \nComputer: ${computerScore} vs Human: ${humanScore}`,
+    );
+  }
 }
 
 playGame();
