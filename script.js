@@ -3,15 +3,14 @@ console.log("Rock Paper Scissors Game");
 //  Write the logic to get the computer choice
 function getComputerChoice() {
   let computerChoice = Math.floor(Math.random() * 3);
-
-  if (computerChoice == 0) {
-    computerChoice = "Rock";
-  } else if (computerChoice == 1) {
-    computerChoice = "Paper";
-  } else if (computerChoice == 2) {
-    computerChoice = "Scissors";
+  switch (computerChoice) {
+    case 0:
+      return "Rock";
+    case 1:
+      return "Paper";
+    case 2:
+      return "Scissors";
   }
-  return computerChoice;
 }
 
 // Write the logic to get the human choice
