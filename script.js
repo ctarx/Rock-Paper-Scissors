@@ -1,23 +1,26 @@
 console.log("Rock Paper Scissors Game");
 
 //  Write the logic to get the computer choice
+const choices = ["Rock", "Paper", "Scissors"];
+
 function getComputerChoice() {
-  let computerChoice = Math.floor(Math.random() * 3);
-  switch (computerChoice) {
-    case 0:
-      return "Rock";
-    case 1:
-      return "Paper";
-    case 2:
-      return "Scissors";
-  }
+  const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+  return computerChoice;
 }
 
 // Write the logic to get the human choice
 function getHumanChoice() {
   let humanChoice = prompt("What's your choice? Rock / Paper / Scissors");
   // humanChoice parameter case-insensitive
-  return humanChoice[0].toUpperCase() + humanChoice.substring(1).toLowerCase();
+  humanChoice =
+    humanChoice[0].toUpperCase() + humanChoice.substring(1).toLowerCase();
+  // Validation
+  if (choices.includes(humanChoice)) {
+    return humanChoice;
+  } else {
+    alert("Invalid choice. Rock, Paper or Scissors?");
+    return getHumanChoice();
+  }
 }
 
 // Write the logic to play the entire game
