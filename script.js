@@ -1,78 +1,80 @@
-console.log("Rock Paper Scissors Game");
-
 //  Write the logic to get the computer choice
-const choices = ["Rock", "Paper", "Scissors"];
-
+const choices = ["rock", "paper", "scissors"];
 function getComputerChoice() {
   const computerChoice = choices[Math.floor(Math.random() * choices.length)];
   return computerChoice;
 }
 
-// Write the logic to get the human choice
-function getHumanChoice() {
-  let humanChoice = prompt("What's your choice? Rock / Paper / Scissors");
-  // humanChoice parameter case-insensitive
-  humanChoice =
-    humanChoice[0].toUpperCase() + humanChoice.substring(1).toLowerCase();
-  // Validation
-  if (choices.includes(humanChoice)) {
-    return humanChoice;
-  } else {
-    alert("Invalid choice. Rock, Paper or Scissors?");
-    return getHumanChoice();
-  }
+// Write buttons logic and play round with a click
+const buttons = document.querySelectorAll("button");
+buttons.forEach((button) => {
+  button.addEventListener("click", () => {
+    let humanSelection = button.className;
+    let computerSelection = getComputerChoice();
+    playRound(computerSelection, humanSelection);
+  });
+});
+
+// Declare the players score variables
+let computerScore = 0;
+let humanScore = 0;
+
+//Declare rounds variables
+let currentRound = 1;
+const maxScore = 5;
+
+// Create DOM elements
+const log = document.querySelector(".log");
+const round = document.querySelector(".round");
+const content = document.createElement("p");
+content.classList.add("content");
+const scoreDisplay = document.createElement("p");
+scoreDisplay.classList.add("score");
+log.appendChild(content);
+log.appendChild(scoreDisplay);
+
+// Write function for a game reset
+function resetGame() {
+  humanScore = 0;
+  computerScore = 0;
+  currentRound = 1;
+  round.innerText = "You can play again!";
 }
 
-// Write the logic to play the entire game
-function playGame() {
-  // Declare the players score variables
-  let humanScore = 0;
-  let computerScore = 0;
+// Write the logic to play a single round
+function playRound(computerChoice, humanChoice) {
+  if (computerScore < maxScore && humanScore < maxScore) {
+    round.textContent = `Round: ${currentRound}`;
 
-  // Write the logic to play a single round
-  function playRound(computerChoice, humanChoice) {
+    content.classList.remove("lost", "win", "draw");
+
     if (computerChoice === humanChoice) {
-      console.log("It's a draw.");
-      alert("It's a draw.");
+      content.classList.add("draw");
+      content.textContent = "It's a draw.";
     } else if (
-      (computerChoice === "Rock" && humanChoice === "Paper") ||
-      (computerChoice === "Paper" && humanChoice === "Scissors") ||
-      (computerChoice === "Scissors" && humanChoice === "Rock")
+      (computerChoice === "rock" && humanChoice === "paper") ||
+      (computerChoice === "paper" && humanChoice === "scissors") ||
+      (computerChoice === "scissors" && humanChoice === "rock")
     ) {
-      console.log(`You won! ${humanChoice} beats ${computerChoice}`);
-      alert(`You won! ${humanChoice} beats ${computerChoice}`);
+      content.classList.add("win");
+      content.textContent = `You won! Player: ${humanChoice} beats Computer: ${computerChoice}`;
       ++humanScore;
     } else {
-      console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
-      alert(`You lose! ${computerChoice} beats ${humanChoice}`);
+      content.classList.add("lost");
+      content.textContent = `You lose! Computer: ${computerChoice} beats Player: ${humanChoice}`;
       ++computerScore;
     }
-  }
+    currentRound++; //count round number
 
-  // Play 5 rounds by calling playRound 5 times
-  for (let round = 1; round <= 5; round++) {
-    let computerSelection = getComputerChoice();
-    let humanSelection = getHumanChoice();
-
-    console.log(
-      `\nIn round ${round}: \nComputer chose: ${computerSelection} and Player chose: ${humanSelection}`,
-    );
-    playRound(computerSelection, humanSelection);
-    console.log(`\nScore: Human: ${humanScore}, Computer: ${computerScore}`);
-  }
-  if (humanScore > computerScore) {
-    alert(
-      `Game over. You won! \nComputer: ${computerScore} vs Human: ${humanScore}`,
-    );
-  } else if (humanScore < computerScore) {
-    alert(
-      `Game over. You lose! \nComputer: ${computerScore} vs Human: ${humanScore}`,
-    );
-  } else {
-    alert(
-      `Game over. It's draw. \nComputer: ${computerScore} vs Human: ${humanScore}`,
-    );
+    if (humanScore === maxScore) {
+      content.classList.add("win");
+      content.textContent = `GAME OVER. You won! Computer: ${computerScore} vs Player: ${humanScore}`;
+      resetGame();
+    } else if (computerScore === maxScore) {
+      content.classList.add("lost");
+      content.textContent = `GAME OVER. You lose! Computer: ${computerScore} vs Player: ${humanScore}`;
+      resetGame();
+    }
+    scoreDisplay.textContent = `Computer ${computerScore} : ${humanScore} Player`;
   }
 }
-
-playGame();
